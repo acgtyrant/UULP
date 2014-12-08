@@ -57,10 +57,7 @@ extern void do_more(FILE *fp) {
 extern int see_more(void) {
   int c;
 
-  printf("\033[7m more? \33[m\n");
-  //int bak = dup(1);
-  //int null = open("/dev/null", O_WRONLY);
-  //dup2(null, 1);
+  printf("\033[7m more? \33[m");
   while ((c = getchar()) != EOF) {
     switch(c) {
       case 'q':
@@ -71,8 +68,5 @@ extern int see_more(void) {
         return PAGELEN;
     }
   }
-  //close(null);
-  //dup2(bak, 1);
-  //close(bak);
   return 0;
 }
