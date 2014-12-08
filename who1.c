@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
   while (read(utmp_fd, &utmp_record, utmp_size) == utmp_size) {
     show_info(&utmp_record);
   }
+  close(utmp_fd);
 
   return EXIT_SUCCESS;
 }
