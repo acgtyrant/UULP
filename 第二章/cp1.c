@@ -14,27 +14,27 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  int src_fp = open(argv[1], O_RDONLY);
-  if (src_fp == -1) {
+  int src_fd = open(argv[1], O_RDONLY);
+  if (src_fd == -1) {
     oops("Can not open", argv[1]);
   }
 
-  int dst_fp = creat(argv[2], COPYMODE);
-  if (dst_fp == -1) {
+  int dst_fd = creat(argv[2], COPYMODE);
+  if (dst_fd == -1) {
     oops("Can not create", argv[2]);
   }
 
   char buf[BUFFERSIZE];
   int buf_size;
 
-  while ((buf_size = read(src_fp, buf, BUFFERSIZE)) > 0)
-    if (write(dst_fp, buf, buf_size) != buf_size)
+  while ((buf_size = read(src_fd, buf, BUFFERSIZE)) > 0)
+    if (write(dst_fd, buf, buf_size) != buf_size)
       oops("Failed to create", argv[2]);
 
   if (buf_size == -1)
     oops("Failed to read", argv[1]);
 
-  if (close(src_fp) == -1 || close(dst_fp) == -1)
+  if (close(src_fd) == -1 || close(dst_fd) == -1)
     oops("Faile to close files.", "");
 
   return EXIT_SUCCESS;
