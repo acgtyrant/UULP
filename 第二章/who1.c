@@ -1,3 +1,6 @@
+// who1.c - a firest version of the who program
+//          open, read UTMP file, and show results
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <utmp.h>

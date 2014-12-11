@@ -1,5 +1,6 @@
-// more01.c - version of more
+// more02.c - version 0.2 of more
 // read and print 24 lines then pause for a few special commands
+// feature of version 0.2: reads from /dev/tty for commands
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,3 +1,8 @@
+// cp1.c
+// version 1 of cp - uses read and write with tunable buffer size
+//
+// usage: cp1 src dest
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>

@@ -1,3 +1,7 @@
+// who2.c - read /etc/utmp and list info therein
+//        - suppresses empty records
+//        - formats time nicely
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
