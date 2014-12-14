@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     printf("Read it successfully from 100 bytes away of EOF, no error happend.\n");
   }
   else {
-    printf("Boooooooom! You failed to read it from 100 bytes away of EOF.\n");
+    fprintf(stderr, "Boooooooom! You failed to read it from 100 bytes away of EOF.\n");
     perror("2.9.text");
   }
   close(fd1);
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     printf("Write it successfully from 100 bytes away of EOF, no error happend.\n");
   }
   else {
-    printf("Boooooooom! You failed to write it from 100 bytes away of EOF.\n");
+    fprintf(stderr, "Boooooooom! You failed to write it from 100 bytes away of EOF.\n");
     perror("2.9.text");
   }
   close(fd2);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     printf("Write it successfully from 20000 bytes away of EOF, no error happend.\n");
   }
   else {
-    printf("Boooooooom! You failed to write it from 20000 bytes away of EOF.\n");
+    fprintf(stderr, "Boooooooom! You failed to write it from 20000 bytes away of EOF.\n");
     perror("2.9.text");
   }
   close(fd3);
