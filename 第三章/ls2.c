@@ -119,7 +119,7 @@ extern void mode_to_letters(int mode, char *letters) {
 
 extern char *uid_to_name(uid_t uid) {
   struct passwd *pwd = getpwuid(uid);
-  static char str[10];
+  static char str[11];
 
   if (pwd == NULL) {
     sprintf(str, "%d", uid);
