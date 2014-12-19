@@ -4,6 +4,13 @@
 // note uses stat and pwd.h and grp.h
 // BUG: try ls2 /tmp
 
+//所谓无法处理 /tmp 目录，是输出了执行二进制代码所在的目录 `.`, 以及父目录 `..`
+//,但若命令行参数即目录并非当前工作目录，则在处理前者下的第一个文件或目录时，
+//会提示 `no such files` 并退出。
+
+//只需在 `do_ls()` 内用 `chdir()` 接收索要处理的命令行参数，即 `dirname`,
+//以便改变工作目录即可。
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
