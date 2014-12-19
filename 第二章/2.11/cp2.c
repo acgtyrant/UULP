@@ -8,6 +8,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #define BUFFERSIZE 4096
 #define COPYMODE 0644
@@ -20,7 +23,14 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  if (strcmp(argv[1], argv[2]) == 0) {
+  struct stat src_stat;
+  struct stat dst_stat;
+  if (stat(argv[1], &src_stat) == -1)
+    oops("Can not stat", argv[1]);
+  if (stat(argv[2], &dst_stat) == -1)
+    oops("Can not stat", argv[2]);
+
+  if (src_stat.st_ino == dst_stat.st_ino) {
     fprintf(stderr, "%s: \"%s\" and \"%s\" are the same file\n", argv[0], argv[1], argv[2]);
     exit(EXIT_FAILURE);
   }
