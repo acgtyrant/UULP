@@ -26,7 +26,7 @@ extern void set_cr_noecho_mode(void);
 extern int get_ok_char(void);
 extern int get_response(char *);
 
-int maxtries = TRIES;
+int maxtries = TRIES; // 教材版源代码实际上漏掉了该变量的声明
 
 int main(int argc, char *argv[]) {
   tty_mode(0); // save tty mode
