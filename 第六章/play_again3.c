@@ -86,7 +86,6 @@ extern int get_response(char *question) {
       return 1;
     if (maxtries-- == 0)
       return 2;
-    putchar('a');
     BEEP;
   }
 }
