@@ -8,8 +8,8 @@
 #define PAGELEN 24
 #define LINELEN 512
 
-extern void do_more(FILE *fp);
-extern int see_more(void);
+extern void do_more(FILE *fp, FILE *fp_tty);
+extern int see_more(FILE *fp_tty);
 
 
 int main(int argc, char *argv[]) {
@@ -21,11 +21,11 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
   if (argc == 1)
-    do_more(stdin);
+    do_more(stdin, fp_tty);
   else 
     while (--argc) {
       if ((fp = fopen(*++argv, "r")) != NULL) {
-        do_more(fp);
+        do_more(fp, fp_tty);
         fclose(fp);
       }
       else {
@@ -38,14 +38,14 @@ int main(int argc, char *argv[]) {
 
 // 先打印行数：当行数达到 PAGELEN 时调用 see_more 函数处理命令；当输出到 stdout
 // 时发现 EOF, 自然终止。
-extern void do_more(FILE *fp) {
+extern void do_more(FILE *fp, FILE *fp_tty) {
   char line[LINELEN];
   int num_of_lines = 0;
   int reply;
 
   while (fgets(line, LINELEN, fp)) {
     if (num_of_lines == PAGELEN) {
-      reply = see_more();
+      reply = see_more(fp_tty);
       if (reply == 0) {
         exit(EXIT_SUCCESS);
       }
@@ -61,7 +61,7 @@ extern void do_more(FILE *fp) {
 }
 
 // 返回所要继续显示的行数。
-extern int see_more(void) {
+extern int see_more(FILE *fp_tty) {
   int c;
 
   printf("\033[7m more? \33[m");
