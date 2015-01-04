@@ -19,19 +19,18 @@ int main(void) {
   set_cr_noecho_mode();
   int c;
   while ((c = getchar()) != EOF) {
-    if (c == 'z') {
-      c = 'a';
+    if (c == 'Q') {
+      tty_mode(1);
+      exit(EXIT_SUCCESS);
     }
-    else {
-      if (c == 'Q') {
-        tty_mode(1);
-        exit(EXIT_SUCCESS);
-      }
-      else {
+
+    if (islower(c)) {
+      if (c == 'z')
+        c = 'a';
+      else
         ++c;
-      }
+      putchar(c);
     }
-    putchar(c);
   }
   tty_mode(1);
   return EXIT_SUCCESS;
