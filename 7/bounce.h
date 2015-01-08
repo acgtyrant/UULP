@@ -1,7 +1,7 @@
 // some settings for the game
 
 #define BLANK ' '
-#define DFL_SYMBOL 'O'
+#define BALL_SYMBOL 'O'
 
 #define TOP_EDGE 5
 #define BOTTOM_EDGE 20
