@@ -2,7 +2,7 @@
 // 全一样，得主动用时间来初始化 seed. 若要追求真随机，则用 /dev/random
 // 为了避免时间雷同，用纳秒级别的函数即可：http://sodino.com/2015/03/20/c-time-micro-nano/
 //
-// 麻烦，算了，干脆用递增数列来初始化 seed 吧……
+// 实践证明，用微妙也行得通。
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +10,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <assert.h>
+#include <sys/time.h>
+#include <time.h>
 
 #define DELAY 10
 
@@ -21,7 +23,10 @@ int main(int argc, char *argv[]) {
   int parent_pid = getpid();
   printf("Before: my pid is %d\n", parent_pid);
   for (int i = 0; i < atoi(argv[1]); ++i) {
-    srandom(i);
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    srandom(tv.tv_usec);
+    printf("tv_usec: %ld\n", tv.tv_usec);
     child_code(parent_pid, random() % DELAY + 1);
   }
   for (int i = 0; i < atoi(argv[1]); ++i) {
