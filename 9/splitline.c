@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "smsh1.h"
+#include "smsh.h"
 
 #define is_delim(x) ((x) == ' ' || (x) == '\t')
 

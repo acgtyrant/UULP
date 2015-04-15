@@ -12,5 +12,16 @@ extern void freelist(char **arglist);
 // execute.c
 extern int execute(char **);
 
-// smsh1.c
+// process.c
+extern int process(char **arglist);
+
+// controlflow.c
+extern int ok_to_execute(void);
+extern int is_control_command(char *s);
+extern int do_control_command(char **arglist);
+
+// buildin.c
+extern int builtin_command(char **arglist, int *rv);
+
+// main.c
 extern void fatal(char *s1, char *s2, int n);
