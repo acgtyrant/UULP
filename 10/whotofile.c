@@ -14,7 +14,7 @@ int main(void) {
   }
 
   if (pid == 0) {
-    close(0);
+    close(1);
     creat("userlist", 0644);
     execlp("who", "who", NULL);
   }
