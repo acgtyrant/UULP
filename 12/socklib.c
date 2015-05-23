@@ -27,8 +27,8 @@ extern int make_server_socket_q(int port, int backlog) {
   struct hostent *hp = gethostbyname(hostname);
 
   struct sockaddr_in saddr;
-  bzero((void *)&saddr, sizeof(saddr));
-  bcopy((void *)hp->h_addr_list[0], (void *)&saddr.sin_addr, sizeof(hp->h_length));
+  memset((void *)&saddr, 0, sizeof(saddr));
+  memcpy((void *)&saddr.sin_addr, (const void *)hp->h_addr_list[0], sizeof(hp->h_length));
   saddr.sin_port = htons(port);
   saddr.sin_family = AF_INET;
 
@@ -51,8 +51,8 @@ extern int connect_to_server(char *hostname, int port) {
     return -1;
 
   struct sockaddr_in saddr;
-  bzero((void *)&saddr, sizeof(saddr));
-  bcopy((void *)hp->h_addr_list[0], (void *)&saddr.sin_addr, sizeof(hp->h_length));
+  memset((void *)&saddr, 0, sizeof(saddr));
+  memcpy((void *)&saddr.sin_addr, (const void *)hp->h_addr_list[0], sizeof(hp->h_length));
   saddr.sin_port = port;
   saddr.sin_family = AF_INET;
 

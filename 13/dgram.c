@@ -26,8 +26,8 @@ extern int make_dgram_client_socket(void) {
 }
 extern void make_internet_address(char *host, int portnum, struct sockaddr_in *saddrp) {
   struct hostent *hp = gethostbyname(host);
-  bzero((void *)saddrp, sizeof(saddrp));
-  bcopy((void *)hp->h_addr_list[0], (void *)&saddrp->sin_addr, hp->h_length);
+  memset((void *)saddrp, 0, sizeof(saddrp));
+  memcpy((void *)&saddrp->sin_addr, (const void *)hp->h_addr_list[0], hp->h_length);
   saddrp->sin_port = htons(portnum);
   saddrp->sin_family = AF_INET;
 }

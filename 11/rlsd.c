@@ -23,8 +23,8 @@ int main(void) {
   struct hostent *hp = gethostbyname(hostname);
   
   struct sockaddr_in saddr;
-  bzero((void *)&saddr, sizeof(saddr));
-  bcopy((void *)hp->h_addr_list[0], (void *)&saddr.sin_addr, hp->h_length);
+  memset((void *)&saddr, 0, sizeof(saddr));
+  memcpy((void *)&saddr.sin_addr, (const void *)hp->h_addr_list[0], sizeof(hp->h_length));
   saddr.sin_port = PORTNUM;
   saddr.sin_family = AF_INET;
 
