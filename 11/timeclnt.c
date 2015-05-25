@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 
   struct hostent *hp = gethostbyname(argv[1]);
   memset((void *)&saddr, 0, sizeof(saddr));
-  memcpy((void *)&saddr.sin_addr, (const void *)hp->h_addr_list[0], sizeof(hp->h_length));
+  memcpy((void *)&saddr.sin_addr, (const void *)hp->h_addr_list[0], hp->h_length);
   saddr.sin_port = htons(atoi(argv[2]));
   saddr.sin_family = AF_INET;
 
