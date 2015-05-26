@@ -7,6 +7,10 @@
 #include "dgram.h"
 
 int main(int argc, char *argv[]) {
+  if (argc != 4) {
+    fprintf(stderr, "usage: dgsend host port 'message'\n");
+    exit(EXIT_FAILURE);
+  }
   int sock_id = make_dgram_client_socket();
 
   struct sockaddr_in saddr;

@@ -12,6 +12,11 @@ extern void reply_to_sender(int sock_fd, char *msg, struct sockaddr_in *saddrp, 
 
 int main(int argc, char *argv[]) {
   int portnum = atoi(argv[1]);
+  if (argc != 2 || portnum <= 0) {
+    fprintf(stderr, "usage: dgrevc port\n");
+    exit(EXIT_FAILURE);
+  }
+
   int sock_id = make_dgram_server_socket(portnum);
 
   char buf[BUFSIZ];

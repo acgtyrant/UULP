@@ -8,6 +8,11 @@ extern void say_who_called(struct sockaddr_in saddr);
 
 int main(int argc, char *argv[]) {
   int portnum = atoi(argv[1]);
+  if (argc != 2 || portnum <= 0) {
+    fprintf(stderr, "usage: dgrevc port\n");
+    exit(EXIT_FAILURE);
+  }
+
   int sock_id = make_dgram_server_socket(portnum);
 
   char buf[BUFSIZ];
