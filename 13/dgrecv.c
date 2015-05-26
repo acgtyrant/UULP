@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 
+#include "dgram.h"
+
 extern void say_who_called(struct sockaddr_in saddr);
 
 int main(int argc, char *argv[]) {
