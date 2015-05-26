@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
 
   struct sockaddr_in saddr;
   make_internet_address(argv[1], atoi(argv[2]), &saddr);
+  // 事实上若没有显式 bind, 则调用 sendto/write 就会随机分配端口
   sendto(sock_id, argv[3], sizeof(argv[3]), 0, (const struct sockaddr *)&saddr, sizeof(saddr));
   return EXIT_SUCCESS;
 }
