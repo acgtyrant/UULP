@@ -15,6 +15,6 @@ int main(int argc, char *argv[]) {
 
   struct sockaddr_in saddr;
   make_internet_address(argv[1], atoi(argv[2]), &saddr);
-  sendto(sock_id, argv[2], sizeof(argv[3]), 0, (const struct sockaddr *)&saddr, sizeof(saddr));
+  sendto(sock_id, argv[3], sizeof(argv[3]), 0, (const struct sockaddr *)&saddr, sizeof(saddr));
   return EXIT_SUCCESS;
 }
