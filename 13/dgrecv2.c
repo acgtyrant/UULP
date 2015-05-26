@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
     buf[msglen] = '\0';
     printf("dgrecv: got a message: %s\n", buf);
     say_who_called(saddr);
+    reply_to_sender(sock_id, buf, &saddr, saddrlen);
   }
   return EXIT_SUCCESS;
 }
